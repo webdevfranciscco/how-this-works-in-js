@@ -163,6 +163,39 @@
     <p>Console output:</p>
     <p class="output" id="functionInFunctionOutput"></p>
 
+    <h2>
+      5. When <em>this</em> is called from an arrow function within another
+      function:
+    </h2>
+
+    <p>For this code:</p>
+
+    <pre>
+        <code>
+    // "this" in an arrow function within another function
+
+    const functionInGlobalScope2 = function () {
+
+      const functionInsideFunction = () => {    
+
+        console.log(
+          typeof this === 'undefined'
+            ? `5. The value of "this" in an arrow function within another function is: ${typeof this}`
+            : `5. The value of "this" in an arrow function within another function is:: ${this}`
+        );
+      };
+
+      functionInsideFunction();
+    };
+
+    functionInGlobalScope2();
+
+        </code>
+      </pre>
+
+    <p>Console output:</p>
+    <p class="output" id="arrowFunctionInFunctionOutput"></p>
+
     <script src="this-keyword.js"></script>
   </body>
 </html>

@@ -44,8 +44,8 @@ const arrowFunctionInGlobalScope = () => {
     '#arrowFunctionInGlobalScopeOutput'
   );
   typeof this === 'undefined'
-    ? (arrowFunctionInGlobalScopeOutput.textContent = typeof this)
-    : (arrowFunctionInGlobalScopeOutput.textContent = this);
+    ? (arrowFunctionInGlobalScopeOutput.textContent = `3. The value of "this" in an arrow function sitting in the global scope is: ${typeof this}`)
+    : (arrowFunctionInGlobalScopeOutput.textContent = `3. The value of "this" in an arrow function sitting in the global scope is defined as: ${this}`);
 
   console.log(
     typeof this === 'undefined'
@@ -64,15 +64,37 @@ const functionInGlobalScope1 = function () {
       '#functionInFunctionOutput'
     );
     typeof this === 'undefined'
-      ? (functionInFunctionOutput.textContent = typeof this)
-      : (functionInFunctionOutput.textContent = this);
+      ? (functionInFunctionOutput.textContent = `4. The value of "this" in a function within another function is: ${typeof this}`)
+      : (functionInFunctionOutput.textContent = `4. The value of "this" in a function within another function is defined as: ${this}`);
     console.log(
       typeof this === 'undefined'
         ? `4. The value of "this" in a function within another function is: ${typeof this}`
-        : `4. The value of "this" in a function within another function is: ${this}`
+        : `4. The value of "this" in a function within another function is defined as: ${this}`
     );
   };
   functionInsideFunction();
 };
 
 functionInGlobalScope1();
+
+// ( 5 )
+// "this" in an arrow function within another function
+
+const functionInGlobalScope2 = function () {
+  const arrowFunctionInsideFunction = () => {
+    const arrowFunctionInFunctionOutput = document.querySelector(
+      '#arrowFunctionInFunctionOutput'
+    );
+    typeof this === 'undefined'
+      ? (arrowFunctionInFunctionOutput.textContent = `5. The value of "this" in an arrow function within another function is: ${typeof this}`)
+      : (arrowFunctionInFunctionOutput.textContent = `5. The value of "this" in an arrow function within another function is defined as: ${this}`);
+    console.log(
+      typeof this === 'undefined'
+        ? `5. The value of "this" in an arrow function within another function is: ${typeof this}`
+        : `5. The value of "this" in an arrow function within another function is defined as: ${this}`
+    );
+  };
+  arrowFunctionInsideFunction();
+};
+
+functionInGlobalScope2();
