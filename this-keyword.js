@@ -54,3 +54,25 @@ const arrowFunctionInGlobalScope = () => {
   );
 };
 arrowFunctionInGlobalScope();
+
+// ( 4 )
+// "this" in a function within another function
+
+const functionInGlobalScope1 = function () {
+  const functionInsideFunction = function () {
+    const functionInFunctionOutput = document.querySelector(
+      '#functionInFunctionOutput'
+    );
+    typeof this === 'undefined'
+      ? (functionInFunctionOutput.textContent = typeof this)
+      : (functionInFunctionOutput.textContent = this);
+    console.log(
+      typeof this === 'undefined'
+        ? `4. The value of "this" in a function within another function is: ${typeof this}`
+        : `4. The value of "this" in a function within another function is: ${this}`
+    );
+  };
+  functionInsideFunction();
+};
+
+functionInGlobalScope1();
