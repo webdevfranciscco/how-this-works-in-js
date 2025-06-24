@@ -67,14 +67,41 @@
     
     console.log(
         typeof this === 'undefined'
-          ? `The value of "this" in the global scope: ${typeof this}`
-          : `The value of "this" in the global scope: ${this}`
+          ? `1. The value of "this" in the global scope: ${typeof this}`
+          : `1. The value of "this" in the global scope is defined as: ${this}`
     );
         </code>
       </pre>
 
     <p>Console output:</p>
     <p class="output" id="globalScopeOutput"></p>
+
+    <h2>
+      2. When <em>this</em> is called from a function located in the global
+      scope:
+    </h2>
+
+    <pre>
+        <code>
+    'use strict';
+          
+    // "this" in a function sitting in the global scope
+
+    const functionInGlobalScope = function () {
+
+      console.log(
+        typeof this === 'undefined'
+          ? `2. The value of "this" in a function sitting in the global scope is: ${typeof this}`
+          : `2. The value of "this" in a function sitting in the global scope is defined as: ${this}`
+      );
+    };
+
+    functionInGlobalScope();
+        </code>
+      </pre>
+
+    <p>Console output:</p>
+    <p class="output" id="functionInGlobalScopeOutput"></p>
 
     <script src="this-keyword.js"></script>
   </body>
