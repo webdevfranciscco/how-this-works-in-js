@@ -26,6 +26,7 @@ const functionInGlobalScope = function () {
   typeof this === 'undefined'
     ? (functionInGlobalScopeOutput.textContent = `2. The value of "this" in a function sitting in the global scope is: ${typeof this}`)
     : (functionInGlobalScopeOutput.textContent = `2. The value of "this" in a function sitting in the global scope is defined as: ${this}`);
+
   console.log(
     typeof this === 'undefined'
       ? `2. The value of "this" in a function sitting in the global scope is: ${typeof this}`
@@ -34,3 +35,22 @@ const functionInGlobalScope = function () {
 };
 
 functionInGlobalScope();
+
+// ( 3 )
+// "this" in an arrow function sitting in the global scope
+
+const arrowFunctionInGlobalScope = () => {
+  const arrowFunctionInGlobalScopeOutput = document.querySelector(
+    '#arrowFunctionInGlobalScopeOutput'
+  );
+  typeof this === 'undefined'
+    ? (arrowFunctionInGlobalScopeOutput.textContent = typeof this)
+    : (arrowFunctionInGlobalScopeOutput.textContent = this);
+
+  console.log(
+    typeof this === 'undefined'
+      ? `3. The value of "this" in an arrow function sitting in the global scope is: ${typeof this}`
+      : `3. The value of "this" in an arrow function sitting in the global scope is defined as: ${this}`
+  );
+};
+arrowFunctionInGlobalScope();
