@@ -52,6 +52,14 @@
         color: #c2c3c9;
         background-color: #252025;
       }
+
+      .warning {
+        color: red;
+      }
+
+      #bottom-empty-space {
+        padding-bottom: 500px;
+      }
     </style>
   </head>
 
@@ -195,6 +203,83 @@
 
     <p>Console output:</p>
     <p class="output" id="arrowFunctionInFunctionOutput"></p>
+
+    <h2>
+      6. When <em>this</em> is called from a method of an object sitting in the
+      global scope:
+    </h2>
+
+    <p>For this code:</p>
+
+    <pre>
+        <code>
+    // "this" in a method of an object sitting in the global scope
+
+    const objectInGlobalScope1 = {
+
+      property1: 'property 1',
+
+        method1: function () {  // << this method is a regular function
+          console.log(
+            typeof this === 'undefined'
+              ? `6. The value of "this" in a method from an object in the global scope is: ${typeof this}`
+              : `6. The value of "this" in a method from an object in the global scope is defined as: ${this}`
+          );
+          console.log(this); // this logs the actual object to the console
+        },
+    };
+
+    objectInGlobalScope1.method1();
+
+        </code>
+      </pre>
+
+    <p>Console output:</p>
+    <p class="output" id="functionInObjectOutput"></p>
+    <p class="output" id="thisToTheConsole1"></p>
+
+    <h2>
+      7. When <em>this</em> is called from an arrow function method of an object
+      sitting in the global scope:
+    </h2>
+
+    <p>For this code:</p>
+
+    <pre>
+        <code>
+    // "this" in an arrow function method of an object sitting in the global scope
+
+    const objectInGlobalScope1 = {
+
+      property1: 'property 1',
+
+        method1: () => {  // << this method is an arrow function
+          console.log(
+            typeof this === 'undefined'
+              ? `7. The value of "this" in an arrow function method from an object in the global scope is: ${typeof this}`
+              : `7. The value of "this" in an arrow function method from an object in the global scope is defined as: ${this}`
+          );
+          console.log(this); // this logs the actual object to the console
+        },
+    };
+
+    objectInGlobalScope1.method1();
+
+        </code>
+      </pre>
+
+    <p>Console output:</p>
+    <p class="output" id="arrowFunctionInObjectOutput"></p>
+    <p class="output" id="thisToTheConsole2"></p>
+
+    <p class="warning">
+      WARNING!<br />
+      Notice that "this" is the Window Object.<br />
+      Do not use an arrow function as a method in an object if you want it to
+      access the properties of your object.
+    </p>
+
+    <p id="bottom-empty-space"></p>
 
     <script src="this-keyword.js"></script>
   </body>
