@@ -51,6 +51,10 @@ code {
   width: 80%;
 }
 
+.tags {
+  margin-left: 30px;
+}
+
 .output {
   font-family: monospace;
   padding-left: 30px;
