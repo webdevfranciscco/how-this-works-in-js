@@ -97,22 +97,22 @@
       <p class="caption">Code:</p>
 
       <pre>
-          <code>
-      'use strict';
-
-      // "this" in an arrow function sitting in the global scope
-
-      const arrowFunctionInGlobalScope = () => {
-        
-        console.log(
-          typeof this === 'undefined'
-            ? `3. The value of "this" in an arrow function sitting in the global scope is: ${typeof this}`
-            : `3. The value of "this" in an arrow function sitting in the global scope is defined as: ${this}`
-        );
-      };
-
-      arrowFunctionInGlobalScope();
-  </code>
+        <code>
+          'use strict';
+          
+          // "this" in an arrow function sitting in the global scope
+          
+          const arrowFunctionInGlobalScope = () => {
+            
+            console.log(
+              typeof this === 'undefined'
+              ? `3. The value of "this" in an arrow function sitting in the global scope is: ${typeof this}`
+              : `3. The value of "this" in an arrow function sitting in the global scope is defined as: ${this}`
+              );
+            };
+            
+            arrowFunctionInGlobalScope();
+          </code>
         </pre>
 
       <p class="caption">Console output:</p>
@@ -122,29 +122,31 @@
         4. When <em>this</em> is called from a function within another function:
       </h2>
 
+      <p class="tags">global < function < function < this</p>
+
       <p class="caption">Code:</p>
 
       <pre>
-          <code>
-      // "this" in a function within another function
-
-      const functionInGlobalScope1 = function () {
-
-          const functionInsideFunction = function () {
-
-            console.log(
-              typeof this === 'undefined'
-              ? `4. The value of "this" in a function within another function is: ${typeof this}`
-              : `4. The value of "this" in a function within another function is defined as: ${this}`
-            );
-
-        };
-
-        functionInsideFunction();
-      };
-
-      functionInGlobalScope1();
-
+        <code>
+          // "this" in a function within another function
+          
+          const functionInGlobalScope1 = function () {
+            
+            const functionInsideFunction = function () {
+              
+              console.log(
+                typeof this === 'undefined'
+                ? `4. The value of "this" in a function within another function is: ${typeof this}`
+                : `4. The value of "this" in a function within another function is defined as: ${this}`
+                );
+                
+              };
+              
+              functionInsideFunction();
+            };
+            
+            functionInGlobalScope1();
+            
           </code>
         </pre>
 
@@ -156,28 +158,30 @@
         function:
       </h2>
 
+      <p class="tags">global < function < arrow function < this</p>
+
       <p class="caption">Code:</p>
 
       <pre>
-          <code>
-      // "this" in an arrow function within another function
-
-      const functionInGlobalScope2 = function () {
-
-        const functionInsideFunction = () => {    
-
-          console.log(
-            typeof this === 'undefined'
-              ? `5. The value of "this" in an arrow function within another function is: ${typeof this}`
-              : `5. The value of "this" in an arrow function within another function is:: ${this}`
-          );
-        };
-
-        functionInsideFunction();
-      };
-
-      functionInGlobalScope2();
-
+        <code>
+          // "this" in an arrow function within another function
+          
+          const functionInGlobalScope2 = function () {
+            
+            const functionInsideFunction = () => {    
+              
+              console.log(
+                typeof this === 'undefined'
+                ? `5. The value of "this" in an arrow function within another function is: ${typeof this}`
+                : `5. The value of "this" in an arrow function within another function is:: ${this}`
+                );
+              };
+              
+              functionInsideFunction();
+            };
+            
+            functionInGlobalScope2();
+            
           </code>
         </pre>
 
@@ -185,32 +189,34 @@
       <p class="output" id="arrowFunctionInFunctionOutput"></p>
 
       <h2>
-        6. When <em>this</em> is called from a method of an object sitting in
-        the global scope:
+        6. When <em>this</em> is called from a regular-function method of an
+        object sitting in the global scope:
       </h2>
+
+      <p class="tags">global < object < regular-function method < this</p>
 
       <p class="caption">Code:</p>
 
       <pre>
-          <code>
-      // "this" in a method of an object sitting in the global scope
-
-      const objectInGlobalScope1 = {
-
-        property1: 'property 1',
-
-          method1: function () {  // << this method is a regular function
-            console.log(
-              typeof this === 'undefined'
+        <code>
+          // "this" in a method of an object sitting in the global scope
+          
+          const objectInGlobalScope1 = {
+            
+            property1: 'property 1',
+            
+            method1: function () {  // << this method is a regular function
+              console.log(
+                typeof this === 'undefined'
                 ? `6. The value of "this" in a method from an object in the global scope is: ${typeof this}`
                 : `6. The value of "this" in a method from an object in the global scope is defined as: ${this}`
-            );
-            console.log(this); // this logs the actual object to the console
-          },
-      };
-
-      objectInGlobalScope1.method1();
-
+                );
+                console.log(this); // this logs the actual object to the console
+              },
+            };
+            
+            objectInGlobalScope1.method1();
+            
           </code>
         </pre>
 
@@ -219,15 +225,17 @@
       <p class="output" id="thisToTheConsole1"></p>
 
       <h2>
-        7. When <em>this</em> is called from an arrow function method of an
+        7. When <em>this</em> is called from an arrow-function method of an
         object sitting in the global scope:
       </h2>
+
+      <p class="tags">global < object < arrow-function method < this</p>
 
       <p class="caption">Code:</p>
 
       <pre>
           <code>
-      // "this" in an arrow function method of an object sitting in the global scope
+      // "this" in an arrow-function method of an object sitting in the global scope
 
       const objectInGlobalScope1 = {
 
