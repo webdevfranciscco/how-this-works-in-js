@@ -20,13 +20,49 @@
         the future.
       </p>
       <p>
+        Please find a detailed code example of each case below, but here's the
+        summary as a quick reference cheatsheet for you to look up whenever you
+        are in doubt:
+      </p>
+      <p class="tags">
+        1. global > this = <em class="tag-output">Window or Global object</em>
+      </p>
+      <p class="tags">
+        2. global > function > this = <em class="tag-output">undefined</em>
+      </p>
+      <p class="tags">
+        3. global > arrow-function > this =
+        <em class="tag-output">Window or Global object</em>
+      </p>
+      <p class="tags">
+        4. global > function > function > this =
+        <em class="tag-output">undefined</em>
+      </p>
+      <p class="tags">
+        5. global > function > arrow-function > this =
+        <em class="tag-output">undefined</em>
+      </p>
+      <p class="tags">
+        6. global > object > regular-function method > this =
+        <em class="tag-output">parent object</em>
+      </p>
+      <p class="tags">
+        7. global > object > arrow-function method > this =
+        <em class="tag-output">Window or Global object</em>
+      </p>
+      <p>
         I hope some other JavaScript apprentice finds this interesting. If so,
         please review my code and send any corrections, comments or suggestions
-        for improvement to webdevfranciscco@gmail.com
+        for improvement to <em id="email">webdevfranciscco@gmail.com</em>
       </p>
       <p>
         Feedback is always welcome, as it is one of the fastest routes for
         learning and growth.
+      </p>
+      <p id="note">
+        Note: Please notice that sometimes <em>this</em> will be the global
+        object which, in the case of the Browser is the Window object but in the
+        case of Node.js, is the Global object instead.
       </p>
     </section>
 
@@ -35,21 +71,23 @@
     <section>
       <h2>1. When <em>this</em> is called from the global scope:</h2>
 
-      <p class="tags">global < this</p>
+      <p class="tags">
+        global > this = <em class="tag-output">Window or Global object</em>
+      </p>
 
       <p class="caption">Code:</p>
 
       <pre>
-          <code>
-      'use strict';
-      
-      // "this" in the global scope
-      
-      console.log(
-          typeof this === 'undefined'
+        <code>
+          'use strict';
+          
+          // "this" in the global scope
+          
+          console.log(
+            typeof this === 'undefined'
             ? `1. The value of "this" in the global scope: ${typeof this}`
             : `1. The value of "this" in the global scope is defined as: ${this}`
-      );
+            );
           </code>
         </pre>
 
@@ -61,28 +99,30 @@
         scope:
       </h2>
 
-      <p class="tags">global < function < this</p>
+      <p class="tags">
+        global > function > this = <em class="tag-output">undefined</em>
+      </p>
 
       <p class="caption">Code:</p>
 
       <pre>
-        <code>
-          'use strict';
-          
-          // "this" in a function sitting in the global scope
-          
-          const functionInGlobalScope = function () {
+          <code>
+            'use strict';
             
-            console.log(
-              typeof this === 'undefined'
-              ? `2. The value of "this" in a function sitting in the global scope is: ${typeof this}`
-              : `2. The value of "this" in a function sitting in the global scope is defined as: ${this}`
-              );
-            };
+            // "this" in a function sitting in the global scope
             
-            functionInGlobalScope();
-          </code>
-        </pre>
+            const functionInGlobalScope = function () {
+              
+              console.log(
+                typeof this === 'undefined'
+                ? `2. The value of "this" in a function sitting in the global scope is: ${typeof this}`
+                : `2. The value of "this" in a function sitting in the global scope is defined as: ${this}`
+                );
+              };
+              
+              functionInGlobalScope();
+            </code>
+          </pre>
 
       <p class="caption">Console output:</p>
       <p class="output" id="functionInGlobalScopeOutput"></p>
@@ -92,28 +132,31 @@
         global scope:
       </h2>
 
-      <p class="tags">global < arrow function < this</p>
+      <p class="tags">
+        global > arrow-function > this =
+        <em class="tag-output">Window or Global object</em>
+      </p>
 
       <p class="caption">Code:</p>
 
       <pre>
-        <code>
-          'use strict';
-          
-          // "this" in an arrow function sitting in the global scope
-          
-          const arrowFunctionInGlobalScope = () => {
-            
-            console.log(
-              typeof this === 'undefined'
-              ? `3. The value of "this" in an arrow function sitting in the global scope is: ${typeof this}`
-              : `3. The value of "this" in an arrow function sitting in the global scope is defined as: ${this}`
-              );
-            };
-            
-            arrowFunctionInGlobalScope();
-          </code>
-        </pre>
+            <code>
+              'use strict';
+              
+              // "this" in an arrow function sitting in the global scope
+              
+              const arrowFunctionInGlobalScope = () => {
+                
+                console.log(
+                  typeof this === 'undefined'
+                  ? `3. The value of "this" in an arrow function sitting in the global scope is: ${typeof this}`
+                  : `3. The value of "this" in an arrow function sitting in the global scope is defined as: ${this}`
+                  );
+                };
+                
+                arrowFunctionInGlobalScope();
+              </code>
+            </pre>
 
       <p class="caption">Console output:</p>
       <p class="output" id="arrowFunctionInGlobalScopeOutput"></p>
@@ -122,33 +165,36 @@
         4. When <em>this</em> is called from a function within another function:
       </h2>
 
-      <p class="tags">global < function < function < this</p>
+      <p class="tags">
+        global > function > function > this =
+        <em class="tag-output">undefined</em>
+      </p>
 
       <p class="caption">Code:</p>
 
       <pre>
-        <code>
-          // "this" in a function within another function
-          
-          const functionInGlobalScope1 = function () {
-            
-            const functionInsideFunction = function () {
-              
-              console.log(
-                typeof this === 'undefined'
-                ? `4. The value of "this" in a function within another function is: ${typeof this}`
-                : `4. The value of "this" in a function within another function is defined as: ${this}`
-                );
+              <code>
+                // "this" in a function within another function
                 
-              };
-              
-              functionInsideFunction();
-            };
-            
-            functionInGlobalScope1();
-            
-          </code>
-        </pre>
+                const functionInGlobalScope1 = function () {
+                  
+                  const functionInsideFunction = function () {
+                    
+                    console.log(
+                      typeof this === 'undefined'
+                      ? `4. The value of "this" in a function within another function is: ${typeof this}`
+                      : `4. The value of "this" in a function within another function is defined as: ${this}`
+                      );
+                      
+                    };
+                    
+                    functionInsideFunction();
+                  };
+                  
+                  functionInGlobalScope1();
+                  
+                </code>
+              </pre>
 
       <p class="caption">Console output:</p>
       <p class="output" id="functionInFunctionOutput"></p>
@@ -158,7 +204,10 @@
         function:
       </h2>
 
-      <p class="tags">global < function < arrow function < this</p>
+      <p class="tags">
+        global > function > arrow-function > this =
+        <em class="tag-output">undefined</em>
+      </p>
 
       <p class="caption">Code:</p>
 
@@ -193,7 +242,10 @@
         object sitting in the global scope:
       </h2>
 
-      <p class="tags">global < object < regular-function method < this</p>
+      <p class="tags">
+        global > object > regular-function method > this =
+        <em class="tag-output">parent object</em>
+      </p>
 
       <p class="caption">Code:</p>
 
@@ -229,7 +281,10 @@
         object sitting in the global scope:
       </h2>
 
-      <p class="tags">global < object < arrow-function method < this</p>
+      <p class="tags">
+        global > object > arrow-function method > this =
+        <em class="tag-output">Window or Global object</em>
+      </p>
 
       <p class="caption">Code:</p>
 
