@@ -2,6 +2,9 @@ body {
   height: 100vh;
   background: #26272e;
   margin-left: 60px;
+  font-family: monospace;
+  font-size: 1rem;
+  color: #c2c3c9;
 }
 
 h1 {
@@ -17,16 +20,37 @@ h2 {
   color: #f77b13;
 }
 
+h3 {
+  padding-left: 1rem;
+  color: #f77b13;
+}
+
+div {
+  background-color: #252025;
+  padding: 1rem;
+}
+
 hr {
   margin-top: 50px;
   margin-bottom: 80px;
   color: #c2c3c9;
 }
 
-p {
+pre {
+  background-color: #252025;
+  padding: 1rem;
+  overflow: hidden;
+  resize: horizontal;
+  min-width: 95%;
+}
+
+code {
   font-family: monospace;
-  font-size: 1rem;
+  font-size: 0.75rem;
   color: #c2c3c9;
+  padding: 0;
+  margin: 0;
+  text-wrap: wrap;
 }
 
 .caption {
@@ -34,21 +58,8 @@ p {
   padding-left: 30px;
 }
 
-pre {
-  background-color: #252025;
-  padding-bottom: 0px;
-  margin-bottom: 0px;
-}
-
-code {
-  font-family: monospace;
-  color: #c2c3c9;
-  padding-bottom: 0;
-  margin-bottom: 0;
-}
-
-.intro {
-  width: 80%;
+section {
+  width: 95%;
 }
 
 .tags {
@@ -56,7 +67,7 @@ code {
   font-size: 0.85rem;
 }
 
-.tag-output {
+.highlighted {
   color: #2b88c5; /* cd00cd;*/
 }
 
@@ -78,7 +89,7 @@ code {
   color: red;
 }
 
-#note {
+.note {
   font-size: 0.75rem;
   margin-left: 2rem;
 }

@@ -5,11 +5,12 @@
 
 const globalScopeOutput = document.querySelector('#globalScopeOutput');
 
+// Send output to the DOM
 typeof this === 'undefined'
   ? (globalScopeOutput.textContent = `1. The value of "this" in the global scope is: ${typeof this}`)
   : (globalScopeOutput.textContent = `1. The value of "this" in the global scope is defined as: ${this}`);
-// 'undefined' could have been used instead of "typeof this", but somehow the latter felt better (as confirmation?)
 
+// send output to the console
 console.log(
   typeof this === 'undefined'
     ? `1. The value of "this" in the global scope is: ${typeof this}`
@@ -23,10 +24,13 @@ const functionInGlobalScope = function () {
   const functionInGlobalScopeOutput = document.querySelector(
     '#functionInGlobalScopeOutput'
   );
+
+  // Send output to the DOM
   typeof this === 'undefined'
     ? (functionInGlobalScopeOutput.textContent = `2. The value of "this" in a function sitting in the global scope is: ${typeof this}`)
     : (functionInGlobalScopeOutput.textContent = `2. The value of "this" in a function sitting in the global scope is defined as: ${this}`);
 
+  // send output to the console
   console.log(
     typeof this === 'undefined'
       ? `2. The value of "this" in a function sitting in the global scope is: ${typeof this}`
@@ -43,10 +47,13 @@ const arrowFunctionInGlobalScope = () => {
   const arrowFunctionInGlobalScopeOutput = document.querySelector(
     '#arrowFunctionInGlobalScopeOutput'
   );
+
+  // Send output to the DOM
   typeof this === 'undefined'
     ? (arrowFunctionInGlobalScopeOutput.textContent = `3. The value of "this" in an arrow function sitting in the global scope is: ${typeof this}`)
     : (arrowFunctionInGlobalScopeOutput.textContent = `3. The value of "this" in an arrow function sitting in the global scope is defined as: ${this}`);
 
+  // send output to the console
   console.log(
     typeof this === 'undefined'
       ? `3. The value of "this" in an arrow function sitting in the global scope is: ${typeof this}`
@@ -63,9 +70,13 @@ const functionInGlobalScope1 = function () {
     const functionInFunctionOutput = document.querySelector(
       '#functionInFunctionOutput'
     );
+
+    // Send output to the DOM
     typeof this === 'undefined'
       ? (functionInFunctionOutput.textContent = `4. The value of "this" in a function within another function is: ${typeof this}`)
       : (functionInFunctionOutput.textContent = `4. The value of "this" in a function within another function is defined as: ${this}`);
+
+    // send output to the console
     console.log(
       typeof this === 'undefined'
         ? `4. The value of "this" in a function within another function is: ${typeof this}`
@@ -85,9 +96,13 @@ const functionInGlobalScope2 = function () {
     const arrowFunctionInFunctionOutput = document.querySelector(
       '#arrowFunctionInFunctionOutput'
     );
+
+    // Send output to the DOM
     typeof this === 'undefined'
       ? (arrowFunctionInFunctionOutput.textContent = `5. The value of "this" in an arrow function within another function is: ${typeof this}`)
       : (arrowFunctionInFunctionOutput.textContent = `5. The value of "this" in an arrow function within another function is defined as: ${this}`);
+
+    // send output to the console
     console.log(
       typeof this === 'undefined'
         ? `5. The value of "this" in an arrow function within another function is: ${typeof this}`
@@ -100,59 +115,132 @@ const functionInGlobalScope2 = function () {
 functionInGlobalScope2();
 
 // ( 6 )
-// "this" in a method of an object sitting in the global scope
+// "this" in a regular-function method of an object sitting in the global scope
 
 const objectInGlobalScope1 = {
+  objectId: 'objectInGlobalScope1',
   property1: 'property 1',
   method1: function () {
-    // << this method is a regular function
     const functionInObjectOutput = document.querySelector(
       '#functionInObjectOutput'
     );
     const thisToTheConsole1 = document.querySelector('#thisToTheConsole1');
 
+    // Send output to the DOM
     typeof this === 'undefined'
-      ? (functionInObjectOutput.textContent = `6. The value of "this" in a method from an object in the global scope is: ${typeof this}`)
-      : (functionInObjectOutput.textContent = `6. The value of "this" in a method from an object in the global scope is defined as: ${this}`);
-
+      ? (functionInObjectOutput.textContent = `6. The value of "this" in a regular-function method from an object in the global scope is: ${typeof this}`)
+      : (functionInObjectOutput.textContent = `6. The value of "this" in a regular-function method from an object in the global scope is defined as: ${this}`);
     thisToTheConsole1.textContent = this;
 
+    // send output to the console
     console.log(
       typeof this === 'undefined'
-        ? `6. The value of "this" in a method from an object in the global scope is: ${typeof this}`
-        : `6. The value of "this" in a method from an object in the global scope is defined as: ${this}`
+        ? `6. The value of "this" in a regular-function method from an object in the global scope is: ${typeof this}`
+        : `6. The value of "this" in a regular-function method from an object in the global scope is defined as: ${this}`
     );
-    console.log(this); // this logs the actual object to the console
+    console.log(this);
   },
 };
 
 objectInGlobalScope1.method1();
 
 // ( 7 )
-// "this" in an arrow function method of an object sitting in the global scope
+// DONE "this" in an arrow-function method of an object sitting in the global scope
 
 const objectInGlobalScope2 = {
+  objectId: 'objectInGlobalScope2',
   property1: 'property 1',
   method1: () => {
-    // << this method is an arrow function
     const arrowFunctionInObjectOutput = document.querySelector(
       '#arrowFunctionInObjectOutput'
     );
-    const thisToTheConsole1 = document.querySelector('#thisToTheConsole1');
+    const thisToTheConsole2 = document.querySelector('#thisToTheConsole2');
 
+    // Send output to the DOM
     typeof this === 'undefined'
-      ? (arrowFunctionInObjectOutput.textContent = `7. The value of "this" in an arrow function method from an object in the global scope is: ${typeof this}`)
-      : (arrowFunctionInObjectOutput.textContent = `7. The value of "this" in an arrow function method from an object in the global scope is defined as: ${this}`);
-
+      ? (arrowFunctionInObjectOutput.textContent = `7. The value of "this" in an arrow-function method from an object in the global scope is: ${typeof this}`)
+      : (arrowFunctionInObjectOutput.textContent = `7. The value of "this" in an arrow-function method from an object in the global scope is defined as: ${this}`);
     thisToTheConsole2.textContent = this;
 
+    // send output to the console
     console.log(
       typeof this === 'undefined'
-        ? `7. The value of "this" in an arrow function method from an object in the global scope is: ${typeof this}`
-        : `7. The value of "this" in an arrow function method from an object in the global scope is defined as: ${this}`
+        ? `7. The value of "this" in an arrow-function method from an object in the global scope is: ${typeof this}`
+        : `7. The value of "this" in an arrow-function method from an object in the global scope is defined as: ${this}`
     );
-    console.log(this); // this logs the actual object to the console
+    console.log(this);
   },
 };
 
 objectInGlobalScope2.method1();
+
+// ( 8 )
+// "this" in a regular function in a method of an object sitting in the global scope
+
+const objectInGlobalScope3 = {
+  objectId: 'objectInGlobalScope3',
+  property1: 'property 1',
+  method1: function () {
+    // Send output to the DOM
+    const innerFunction1 = function () {
+      const regularFunctionInMethodInObjectOutput = document.querySelector(
+        '#regularFunctionInMethodInObjectOutput'
+      );
+      const thisToTheConsole3 = document.querySelector('#thisToTheConsole3');
+
+      // Send output to the DOM
+      typeof this === 'undefined'
+        ? (regularFunctionInMethodInObjectOutput.textContent = `8. The value of "this" in a regular function in a method from an object in the global scope is: ${typeof this}`)
+        : (regularFunctionInMethodInObjectOutput.textContent = `8. The value of "this" in a regular function in a method from an object in the global scope is defined as: ${this}`);
+
+      thisToTheConsole3.textContent = typeof this;
+
+      // send output to the console
+      console.log(
+        typeof this === 'undefined'
+          ? `8. The value of "this" in a regular function in a method from an object in the global scope is: ${typeof this}`
+          : `8. The value of "this" in a regular function in a method from an object in the global scope is defined as: ${this}`
+      );
+      console.log(this);
+    };
+
+    innerFunction1();
+  },
+};
+
+objectInGlobalScope3.method1();
+
+// ( 9 )
+// "this" in an arrow-function in a method of an object sitting in the global scope
+
+const objectInGlobalScope4 = {
+  objectId: 'objectInGlobalScope4',
+  property1: 'property 1',
+  method1: function () {
+    const innerArrowFunction1 = () => {
+      const arrowFunctionInMethodInObjectOutput = document.querySelector(
+        '#arrowFunctionInMethodInObjectOutput'
+      );
+      const thisToTheConsole4 = document.querySelector('#thisToTheConsole4');
+
+      // Send output to the DOM
+      typeof this === 'undefined'
+        ? (arrowFunctionInMethodInObjectOutput.textContent = `9. The value of "this" in an arrow function in a method from an object in the global scope is: ${typeof this}`)
+        : (arrowFunctionInMethodInObjectOutput.textContent = `9. The value of "this" in an arrow function in a method from an object in the global scope is defined as: ${this}`);
+
+      thisToTheConsole4.textContent = this;
+
+      // send output to the console
+      console.log(
+        typeof this === 'undefined'
+          ? `9. The value of "this" in an arrow function in a method from an object in the global scope is: ${typeof this}`
+          : `9. The value of "this" in an arrow function in a method from an object in the global scope is defined as: ${this}`
+      );
+      console.log(this); // this logs the actual object to the console
+    };
+    //
+    innerArrowFunction1();
+  },
+};
+
+objectInGlobalScope4.method1();

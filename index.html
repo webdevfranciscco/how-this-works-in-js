@@ -11,44 +11,86 @@
   <body>
     <h1>How the <em>this</em> keyword works in JS</h1>
     <section class="intro">
-      <p>This is a cheatsheet about the <em>this</em> keyword in JavaScript.</p>
       <p>
-        While trying to wrap my head around the diverse manners in which this
-        special keyword behaves, depending on its context, I decided to model
-        what I imagine would be the most common context cases in one actual
-        functional webpage as a reference, should I forget or get confused in
-        the future.
+        This is a cheatsheet about the <em class="highlighted">this</em> keyword
+        in JavaScript.
       </p>
       <p>
-        Please find a detailed code example of each case below, but here's the
-        summary as a quick reference cheatsheet for you to look up whenever you
-        are in doubt:
+        The basic rules for the <em class="highlighted">this</em> keyword are:
       </p>
-      <p class="tags">
-        1. global > this = <em class="tag-output">Window or Global object</em>
+      <div>
+        <ul>
+          <li>
+            When <em class="highlighted">this</em> is inside a method: this =
+            object that is calling the method
+          </li>
+          <li>
+            When <em class="highlighted">this</em> is inside a regular function:
+            this = undefined
+          </li>
+          <li>
+            When <em class="highlighted">this</em> is inside an arrow function:
+            this = this of the surrounding function
+          </li>
+          <li>
+            When <em class="highlighted">this</em> is in an event listener: this
+            = DOM element that the handler is attached to
+          </li>
+        </ul>
+        <p class="note">
+          Note: The cases for new, call, apply and bind are not included and
+          will be added later on.
+        </p>
+      </div>
+      <p>
+        Common context cases are presented here for reference. You can find your
+        case in the <em class="highlighted">Summary</em> table, and then look at
+        the corresponding code below the horizontal ruler to try it out
+        yourself.
       </p>
-      <p class="tags">
-        2. global > function > this = <em class="tag-output">undefined</em>
-      </p>
-      <p class="tags">
-        3. global > arrow-function > this =
-        <em class="tag-output">Window or Global object</em>
-      </p>
-      <p class="tags">
-        4. global > function > function > this =
-        <em class="tag-output">undefined</em>
-      </p>
-      <p class="tags">
-        5. global > function > arrow-function > this =
-        <em class="tag-output">undefined</em>
-      </p>
-      <p class="tags">
-        6. global > object > regular-function method > this =
-        <em class="tag-output">parent object</em>
-      </p>
-      <p class="tags">
-        7. global > object > arrow-function method > this =
-        <em class="tag-output">Window or Global object</em>
+      <div>
+        <h3>Summary</h3>
+        <p class="tags">
+          1. global > this =
+          <em class="highlighted">Window or Global object</em>
+        </p>
+        <p class="tags">
+          2. global > regular function > this =
+          <em class="highlighted">undefined</em>
+        </p>
+        <p class="tags">
+          3. global > arrow function > this =
+          <em class="highlighted">Window or Global object</em>
+        </p>
+        <p class="tags">
+          4. global > function > regular function > this =
+          <em class="highlighted">undefined</em>
+        </p>
+        <p class="tags">
+          5. global > function > arrow function > this =
+          <em class="highlighted">undefined</em>
+        </p>
+        <p class="tags">
+          6. global > object > regular-function method > this =
+          <em class="highlighted">parent object</em>
+        </p>
+        <p class="tags">
+          7. global > object > arrow-function method > this =
+          <em class="highlighted">Window or Global object</em>
+          <span class="warning">Never use this case!</span>
+        </p>
+        <p class="tags">
+          8. global > object > method > regular function > this =
+          <em class="highlighted">undefined</em>
+        </p>
+        <p class="tags">
+          9. global > object > method > arrow function > this =
+          <em class="highlighted">parent object</em>
+        </p>
+      </div>
+      <p>
+        Please open the console, so you can see the actual results of the code
+        shown in this page.
       </p>
       <p>
         I hope some other JavaScript apprentice finds this interesting. If so,
@@ -59,7 +101,7 @@
         Feedback is always welcome, as it is one of the fastest routes for
         learning and growth.
       </p>
-      <p id="note">
+      <p class="note">
         Note: Please notice that sometimes <em>this</em> will be the global
         object which, in the case of the Browser is the Window object but in the
         case of Node.js, is the Global object instead.
@@ -72,22 +114,20 @@
       <h2>1. When <em>this</em> is called from the global scope:</h2>
 
       <p class="tags">
-        global > this = <em class="tag-output">Window or Global object</em>
+        global > this = <em class="highlighted">Window or Global object</em>
       </p>
 
       <p class="caption">Code:</p>
 
       <pre>
         <code>
-          'use strict';
-          
-          // "this" in the global scope
-          
-          console.log(
-            typeof this === 'undefined'
-            ? `1. The value of "this" in the global scope: ${typeof this}`
-            : `1. The value of "this" in the global scope is defined as: ${this}`
-            );
+'use strict';
+
+console.log(
+  typeof this === 'undefined'
+  ? `1. The value of "this" in the global scope: ${typeof this}`
+  : `1. The value of "this" in the global scope is defined as: ${this}`
+);
           </code>
         </pre>
 
@@ -100,27 +140,26 @@
       </h2>
 
       <p class="tags">
-        global > function > this = <em class="tag-output">undefined</em>
+        global > regular function > this =
+        <em class="highlighted">undefined</em>
       </p>
 
       <p class="caption">Code:</p>
 
       <pre>
           <code>
-            'use strict';
-            
-            // "this" in a function sitting in the global scope
-            
-            const functionInGlobalScope = function () {
-              
-              console.log(
-                typeof this === 'undefined'
-                ? `2. The value of "this" in a function sitting in the global scope is: ${typeof this}`
-                : `2. The value of "this" in a function sitting in the global scope is defined as: ${this}`
-                );
-              };
-              
-              functionInGlobalScope();
+'use strict';
+
+const functionInGlobalScope = function () {
+  
+  console.log(
+    typeof this === 'undefined'
+    ? `2. The value of "this" in a function sitting in the global scope is: ${typeof this}`
+    : `2. The value of "this" in a function sitting in the global scope is defined as: ${this}`
+  );
+};
+
+functionInGlobalScope();
             </code>
           </pre>
 
@@ -133,28 +172,26 @@
       </h2>
 
       <p class="tags">
-        global > arrow-function > this =
-        <em class="tag-output">Window or Global object</em>
+        global > arrow function > this =
+        <em class="highlighted">Window or Global object</em>
       </p>
 
       <p class="caption">Code:</p>
 
       <pre>
             <code>
-              'use strict';
-              
-              // "this" in an arrow function sitting in the global scope
-              
-              const arrowFunctionInGlobalScope = () => {
-                
-                console.log(
-                  typeof this === 'undefined'
-                  ? `3. The value of "this" in an arrow function sitting in the global scope is: ${typeof this}`
-                  : `3. The value of "this" in an arrow function sitting in the global scope is defined as: ${this}`
-                  );
-                };
-                
-                arrowFunctionInGlobalScope();
+'use strict';
+
+const arrowFunctionInGlobalScope = () => {
+  
+console.log(
+  typeof this === 'undefined'
+  ? `3. The value of "this" in an arrow function sitting in the global scope is: ${typeof this}`
+  : `3. The value of "this" in an arrow function sitting in the global scope is defined as: ${this}`
+);
+};
+
+arrowFunctionInGlobalScope();
               </code>
             </pre>
 
@@ -166,34 +203,34 @@
       </h2>
 
       <p class="tags">
-        global > function > function > this =
-        <em class="tag-output">undefined</em>
+        global > function > regular function > this =
+        <em class="highlighted">undefined</em>
       </p>
 
       <p class="caption">Code:</p>
 
       <pre>
-              <code>
-                // "this" in a function within another function
-                
-                const functionInGlobalScope1 = function () {
-                  
-                  const functionInsideFunction = function () {
-                    
-                    console.log(
-                      typeof this === 'undefined'
-                      ? `4. The value of "this" in a function within another function is: ${typeof this}`
-                      : `4. The value of "this" in a function within another function is defined as: ${this}`
-                      );
-                      
-                    };
-                    
-                    functionInsideFunction();
-                  };
-                  
-                  functionInGlobalScope1();
-                  
-                </code>
+        <code>
+'use strict';
+
+const functionInGlobalScope1 = function () {
+  
+  const functionInsideFunction = function () {
+    
+    console.log(
+      typeof this === 'undefined'
+      ? `4. The value of "this" in a function within another function is: ${typeof this}`
+      : `4. The value of "this" in a function within another function is defined as: ${this}`
+    );
+      
+  };
+  
+  functionInsideFunction();
+};
+
+functionInGlobalScope1();
+            
+          </code>
               </pre>
 
       <p class="caption">Console output:</p>
@@ -205,31 +242,31 @@
       </h2>
 
       <p class="tags">
-        global > function > arrow-function > this =
-        <em class="tag-output">undefined</em>
+        global > function > arrow function > this =
+        <em class="highlighted">undefined</em>
       </p>
 
       <p class="caption">Code:</p>
 
       <pre>
         <code>
-          // "this" in an arrow function within another function
-          
-          const functionInGlobalScope2 = function () {
-            
-            const functionInsideFunction = () => {    
-              
-              console.log(
-                typeof this === 'undefined'
-                ? `5. The value of "this" in an arrow function within another function is: ${typeof this}`
-                : `5. The value of "this" in an arrow function within another function is:: ${this}`
-                );
-              };
-              
-              functionInsideFunction();
-            };
-            
-            functionInGlobalScope2();
+'use strict';
+
+const functionInGlobalScope2 = function () {
+  
+  const functionInsideFunction = () => {    
+    
+    console.log(
+      typeof this === 'undefined'
+      ? `5. The value of "this" in an arrow function within another function is: ${typeof this}`
+      : `5. The value of "this" in an arrow function within another function is:: ${this}`
+    );
+  };
+    
+  functionInsideFunction();
+};
+
+functionInGlobalScope2();
             
           </code>
         </pre>
@@ -244,30 +281,34 @@
 
       <p class="tags">
         global > object > regular-function method > this =
-        <em class="tag-output">parent object</em>
+        <em class="highlighted">parent object</em>
       </p>
 
       <p class="caption">Code:</p>
 
       <pre>
         <code>
-          // "this" in a method of an object sitting in the global scope
-          
-          const objectInGlobalScope1 = {
-            
-            property1: 'property 1',
-            
-            method1: function () {  // << this method is a regular function
-              console.log(
-                typeof this === 'undefined'
-                ? `6. The value of "this" in a method from an object in the global scope is: ${typeof this}`
-                : `6. The value of "this" in a method from an object in the global scope is defined as: ${this}`
-                );
-                console.log(this); // this logs the actual object to the console
-              },
-            };
-            
-            objectInGlobalScope1.method1();
+'use strict';
+
+const objectInGlobalScope1 = {
+
+  objectId: 'objectInGlobalScope1',
+
+  property1: 'property 1',
+
+  method1: function () {    
+
+    console.log(
+      typeof this === 'undefined'
+        ? `6. The value of "this" in a regular-function method from an object in the global scope is: ${typeof this}`
+        : `6. The value of "this" in a regular-function method from an object in the global scope is defined as: ${this}`
+    );
+    console.log(this);
+    
+  },
+};
+
+objectInGlobalScope1.method1();
             
           </code>
         </pre>
@@ -283,33 +324,36 @@
 
       <p class="tags">
         global > object > arrow-function method > this =
-        <em class="tag-output">Window or Global object</em>
+        <em class="highlighted">Window or Global object</em>
       </p>
 
       <p class="caption">Code:</p>
 
       <pre>
-          <code>
-      // "this" in an arrow-function method of an object sitting in the global scope
+        <code> <!-- DONE -->
+'use strict';
 
-      const objectInGlobalScope1 = {
+const objectInGlobalScope2 = {
 
-        property1: 'property 1',
+  objectId: 'objectInGlobalScope2',
 
-          method1: () => {  // << this method is an arrow function
-            console.log(
-              typeof this === 'undefined'
-                ? `7. The value of "this" in an arrow function method from an object in the global scope is: ${typeof this}`
-                : `7. The value of "this" in an arrow function method from an object in the global scope is defined as: ${this}`
-            );
-            console.log(this); // this logs the actual object to the console
-          },
-      };
+  property1: 'property 1',
 
-      objectInGlobalScope1.method1();
+  method1: () => {
 
-          </code>
-        </pre>
+    console.log(
+      typeof this === 'undefined'
+        ? `7. The value of "this" in an arrow-function method from an object in the global scope is: ${typeof this}`
+        : `7. The value of "this" in an arrow-function method from an object in the global scope is defined as: ${this}`
+    );
+    console.log(this);
+  },
+};
+
+objectInGlobalScope2.method1();
+            
+        </code>
+      </pre>
 
       <p class="caption">Console output:</p>
       <p class="output" id="arrowFunctionInObjectOutput"></p>
@@ -317,10 +361,99 @@
 
       <p class="warning">
         WARNING!<br />
-        Notice that "this" is the Window Object.<br />
-        Do not use an arrow function as a method in an object if you want it to
-        access the properties of your object.
+        Notice that the value of "this" is the Window Object in this case.<br />
+        Never use an arrow function as a method in an object to prevent
+        unintended consequences. Use a regular function inside an object
+        instead.
       </p>
+
+      <h2>
+        8. When <em>this</em> is called from a regular function in a method of
+        an object sitting in the global scope:
+      </h2>
+
+      <p class="tags">
+        global > object > method > regular function > this =
+        <em class="highlighted">undefined</em>
+      </p>
+
+      <p class="caption">Code:</p>
+
+      <pre>
+        <code>
+'use strict';
+
+const objectInGlobalScope3 = {
+
+  objectId: 'objectInGlobalScope3',
+
+  property1: 'property 1',
+
+  method1: function () {
+
+      console.log(
+        typeof this === 'undefined'
+          ? `8. The value of "this" in a regular function in a method from an object in the global scope is: ${typeof this}`
+          : `8. The value of "this" in a regular function in a method from an object in the global scope is defined as: ${this}`
+      );
+      console.log(this);
+    };
+
+    innerFunction1();
+  },
+};
+
+objectInGlobalScope3.method1();  
+        </code>
+      </pre>
+
+      <p class="caption">Console output:</p>
+      <p class="output" id="regularFunctionInMethodInObjectOutput"></p>
+      <p class="output" id="thisToTheConsole3"></p>
+
+      <h2>
+        9. When <em>this</em> is called from an arrow function in a method of an
+        object sitting in the global scope:
+      </h2>
+
+      <p class="tags">
+        global > object > method > arrow function > this =
+        <em class="highlighted">parent object</em>
+      </p>
+
+      <p class="caption">Code:</p>
+
+      <pre>
+  <code>
+'use strict';
+
+const objectInGlobalScope4 = {
+
+  objectId: 'objectInGlobalScope4',
+
+  property1: 'property 1',
+
+  method1: function () {
+    
+    const innerArrowFunction1 = () => {
+
+      console.log(
+        typeof this === 'undefined'
+          ? `9. The value of "this" in an arrow function in a method from an object in the global scope is: ${typeof this}`
+          : `9. The value of "this" in an arrow function in a method from an object in the global scope is defined as: ${this}`
+      );
+      console.log(this); // this logs the actual object to the console
+    };
+    //
+    innerArrowFunction1();
+  },
+};           
+            </code>
+          </pre>
+
+      <p class="caption">Console output:</p>
+      <p class="output" id="arrowFunctionInMethodInObjectOutput"></p>
+      <p class="output" id="thisToTheConsole4"></p>
 
       <p id="bottom-empty-space"></p>
     </section>
