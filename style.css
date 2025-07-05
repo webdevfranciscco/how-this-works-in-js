@@ -14,6 +14,7 @@ h1 {
   width: 100%;
   padding-top: 30px;
   color: #2b88c5;
+  text-wrap: balance;
 }
 
 h2 {
@@ -28,6 +29,10 @@ h3 {
 div {
   background-color: #252025;
   padding: 1rem;
+}
+
+p {
+  text-wrap: pretty;
 }
 
 hr {
